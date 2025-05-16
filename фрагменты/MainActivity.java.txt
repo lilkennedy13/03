@@ -1,4 +1,4 @@
-package com.example.fragment;
+package com.example.myapplication;
 
 import android.os.Bundle;
 import android.service.voice.VoiceInteractionSession;
@@ -12,11 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.fragment.databinding.ActivityMainBinding;
+import com.example.myapplication.BlankFragment;
+import com.example.myapplication.BlankFragment2;
+import com.example.myapplication.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private firstfragment firstfragment = new firstfragment();
+    private BlankFragment blankFragment=new BlankFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,18 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setNewFragment(firstfragment);
+        setNewFragment(blankFragment);
         binding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNewFragment(firstfragment);
+                setNewFragment(blankFragment);
             }
         });
         binding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                secondfragment secondfragment = new secondfragment();
-                setNewFragment(secondfragment);
+                BlankFragment2 blankFragment2 = new BlankFragment2();
+                setNewFragment(blankFragment2);
             }
         });
     }

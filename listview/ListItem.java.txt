@@ -1,0 +1,54 @@
+package com.example.myapplication;
+
+import java.util.Random;
+
+public class ListItem {
+    private int avatarId;
+    private String name;
+    private long randomNumber;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    public long getRandomNumber() {
+        return randomNumber;
+    }
+
+    public void setRandomNumber(long randomNumber) {
+        this.randomNumber = randomNumber;
+    }
+
+    private ListItem(int avatar_id, String name, long randomNumber) {
+        this.avatarId = avatar_id;
+        this.name = name;
+        this.randomNumber = randomNumber;
+    }
+
+    private static final String[] names = new String[]{
+            "asd", "qq"
+    };
+    private static final int[] ids = new int[]{
+            R.drawable.i1,
+            R.drawable.i2
+    };
+
+    public static ListItem generateListItem() {
+        int id = ids[new Random().nextInt(2)];
+        String name = names[new Random().nextInt(2)];
+        long number = new Random().nextLong();
+        return new ListItem(id, name, number);
+    }
+}
