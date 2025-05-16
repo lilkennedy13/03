@@ -1,0 +1,70 @@
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.myapplication.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
+    private List<Person> people;
+    private MyAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        people=new ArrayList<>();
+        List<Person>people=new ArrayList<>();
+        people.add(new Person("ssssssssss",R.drawable.img2));
+        people.add(new Person("qwerty",R.drawable.img3));
+        people.add(new Person("QWERTY",R.drawable.img4));
+        people.add(new Person("QWERddddTY",R.drawable.img5));
+        binding.recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.setAdapter(new MyAdapter(people));
+        adapter=new MyAdapter(people);
+        binding.recyclerView.setAdapter(adapter);
+        binding.btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                people.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+        binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(people.size()>0)
+                {
+                    people.remove(people.size()-1);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                people.add(new Person("new",R.drawable.img5));
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+
+    }
+}
