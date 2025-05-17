@@ -1,47 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ListItem">
+package com.example.karimova;
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012"
-        app:srcCompat="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="name"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toTopOf="@+id/image"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        />
+import java.util.Random;
 
-    <TextView
-        android:id="@+id/number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="generated number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+public class ListItem {
+    private  int AvatarId;
+    private String name;
+    private long randomNumber;
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    public ListItem(int avatarId, String name, long randomNumber) {
+        this.AvatarId = avatarId;
+        this.name = name;
+        this.randomNumber = randomNumber;
+    }
+
+    public int getAvatarId() {
+        return AvatarId;
+    }
+
+    public void setAvatarId(int avatarId) {
+        AvatarId = avatarId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getRandomNumber() {
+        return randomNumber;
+    }
+
+    public void setRandomNumber(long randomNumber) {
+        this.randomNumber = randomNumber;
+    }
+    private  static final String[] names=new String[]{
+            "Alexander",
+            "Vladimir",
+            "David",
+            "Anton",
+            "Vadim",
+            "Vadislav",
+            "Timur"
+    };
+    private static final int[] ids=new int[]{
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4,
+            R.drawable.image5,
+            R.drawable.image6,
+            R.drawable.image7
+    };
+    public static ListItem generateListItem(){
+        int id=ids[new Random().nextInt(ids.length)];
+        String name=names[new Random().nextInt(names.length)];
+        long number=new Random().nextLong();
+        return new ListItem(id, name, number);
+    }
+}
