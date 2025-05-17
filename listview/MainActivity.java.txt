@@ -1,6 +1,9 @@
-package com.example.myapplication;
+package com.example.karimova;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,17 +11,42 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.karimova.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+ private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        List <ListItem> data=new ArrayList<>();
+
+        LayoutInflater inflater=LayoutInflater.from(this);
+        UsersAdapter adapter=new UsersAdapter(data, inflater);
+
+
+        binding.listView.setAdapter(adapter);
+        binding.addBtn.setOnClickListener(v -> {
+            data.add(ListItem.generateListItem());
+            adapter.notifyDataSetChanged();
         });
+        binding.deleteBtn.setOnClickListener(v ->{
+            if (data.size()>0)
+                data.remove(data.size()-1);
+            adapter.notifyDataSetChanged();
+        });
+        binding.clearBtn.setOnClickListener(v ->{
+            data.clear();
+            adapter.notifyDataSetChanged();
+        });
+
     }
 }
