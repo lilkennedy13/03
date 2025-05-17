@@ -1,64 +1,43 @@
-package com.example.karimova;
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
 
 
-import java.util.Random;
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="51dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
-public class ListItem {
-    private  int AvatarId;
-    private String name;
-    private long randomNumber;
+    <TextView
+        android:id="@+id/textname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Name"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    public ListItem(int avatarId, String name, long randomNumber) {
-        this.AvatarId = avatarId;
-        this.name = name;
-        this.randomNumber = randomNumber;
-    }
-
-    public int getAvatarId() {
-        return AvatarId;
-    }
-
-    public void setAvatarId(int avatarId) {
-        AvatarId = avatarId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getRandomNumber() {
-        return randomNumber;
-    }
-
-    public void setRandomNumber(long randomNumber) {
-        this.randomNumber = randomNumber;
-    }
-    private  static final String[] names=new String[]{
-            "Alexander",
-            "Vladimir",
-            "David",
-            "Anton",
-            "Vadim",
-            "Vadislav",
-            "Timur"
-    };
-    private static final int[] ids=new int[]{
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3,
-            R.drawable.image4,
-            R.drawable.image5,
-            R.drawable.image6,
-            R.drawable.image7
-    };
-    public static ListItem generateListItem(){
-        int id=ids[new Random().nextInt(ids.length)];
-        String name=names[new Random().nextInt(names.length)];
-        long number=new Random().nextLong();
-        return new ListItem(id, name, number);
-    }
-}
+    <TextView
+        android:id="@+id/textnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="116dp"
+        android:text="random"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
